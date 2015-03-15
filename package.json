@@ -1,6 +1,6 @@
 {
   "name": "generator-angular-cmelion",
-  "version": "0.1.20",
+  "version": "0.1.21",
   "author": "Charles Fulnecky",
   "description": "Custom yeoman generator for AngularJS",
   "keywords": [

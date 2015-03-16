@@ -5,6 +5,7 @@ var ScriptBase = require('../script-base.js');
 
 var Generator = module.exports = function Generator() {
   ScriptBase.apply(this, arguments);
+  this.typeSuffix = '.factory';
 };
 
 util.inherits(Generator, ScriptBase);
@@ -14,6 +15,7 @@ Generator.prototype.createServiceFiles = function createServiceFiles() {
     'service/factory',
     'spec/service',
     'factories/',
-    '../unit/spec/scripts/factories/'
+    '../unit/spec/scripts/factories/',
+    this.dasherizedName + this.typeSuffix
   );
 };

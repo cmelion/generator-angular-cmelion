@@ -36,6 +36,7 @@ Generator.prototype.createComponentFiles = function createComponentFiles() {
     this.componentModuleName = this.generateModuleName('components');
     this.templateUrl = ('components/' + targetPath + '/' + this.dasherizedName + '.html').replace(/\/\//g, '/');
     this.viewClassesForScss = '.' + this.componentName;
+    this.typeSuffix = '.component';
 
     var newSassTemplatePath = path.join(this.env.options.appPath, 'components', targetPath, '_' + this.dasherizedName + '.scss');
     var newHtmlTemplatePath = path.join(this.env.options.appPath, 'components', targetPath, this.dasherizedName + '.html');
@@ -44,7 +45,8 @@ Generator.prototype.createComponentFiles = function createComponentFiles() {
         'component',
         'spec/component',
         ('../components/' + _.dasherize(this.name)),
-            '../unit/spec/components/' + targetPath
+        '../unit/spec/components/' + targetPath,
+        this.dasherizedName + this.typeSuffix
     );
 
     this.template('../common/component.scss', newSassTemplatePath);

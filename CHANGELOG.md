@@ -1,9 +1,3 @@
-<a name="v0.1.20"></a>
-### v0.1.20 (2015-03-15)
-
-<a name="v0.1.19"></a>
-### v0.1.19 (2015-03-15)
-
 v0.1.12
 -------
 The bower_components folder has been moved out of the src folder and into the project root

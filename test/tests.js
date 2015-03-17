@@ -254,8 +254,8 @@ describe('angular-cmelion generator', function () {
             angular.run([], function () {
                 providerGenerator.run([], function () {
                     helpers.assertFiles([
-                        ['src/scripts/providers/provider-thing.js'],
-                        ['test/unit/spec/providers/provider-thing.js']
+                        ['src/scripts/providers/provider-thing.provider.js'],
+                        ['test/unit/spec/providers/provider-thing.provider.spec.js']
                     ]);
                     done();
                 });

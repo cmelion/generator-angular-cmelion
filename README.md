@@ -150,8 +150,8 @@ It will automatically intercept all calls done through ```$http``` to the API an
         MyTestRepo.data = JSON.parse(xhr.response);
 ```
 
-### Page
-Pages are located under `app/states`. A state basically is a controller, with a view and state specific styling. Routes are specified using the powerful Angular-UI Route API in the config section in the controller.
+### State
+States are located under `app/states`. A state basically is a controller, with a view and state specific styling. Routes are specified using the powerful Angular-UI Route API in the config section in the controller.
 
 Example:
 ```bash

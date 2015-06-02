@@ -9,27 +9,6 @@ var inflection = require( 'inflection' );
 var Generator = module.exports = function Generator() {
     yeoman.generators.NamedBase.apply(this, arguments);
 
-    try {
-        this.appname = require(path.join(process.cwd(), 'bower.json')).name;
-    } catch (e) {
-        this.appname = path.basename(process.cwd());
-    }
-    this.appname = this._.slugify(this._.humanize(this.appname));
-    this.scriptAppName = this._.camelize(this.appname);
-
-    this.name = this.name
-                    .replace(/^\//, '') //remove leading slashes
-                    .replace(/\/$/,''); //remove ending slashes
-
-    this.hierarchy = this.name.split('/');
-
-    this.slugifiedPath = this.hierarchy.map(function (folder) { //Generate a slugified name
-         return dasherize(folder);
-    });
-    this.slugifiedPath.pop(); //remove the last element in the array, namely the name
-
-    this.name =last(this.hierarchy);
-
     function last(arr) {
         return arr[arr.length-1];
     }
@@ -39,18 +18,37 @@ var Generator = module.exports = function Generator() {
             str.replace(/(?:^[A-Z]{2,})/g, function (match) { //XMLfileIsCool -> xml-fileIsCool
                 return match.toLowerCase() + "-";
             })
-            .replace(/(?:[A-Z]+)/g, function (match) { //camelCase -> snake-case
-                return "-" + match.toLowerCase();
-            })
-            .replace(/^-/, '')
+                .replace(/(?:[A-Z]+)/g, function (match) { //camelCase -> snake-case
+                    return "-" + match.toLowerCase();
+                })
+                .replace(/^-/, '')
         ); // CamelCase -> -snake-case -> snake-case);
     };
 
-    this.cameledName = this._.camelize(this.name);
-    this.dasherizedName = dasherize(this.name);
-    this.pluralizedName = inflection.pluralize(this.name);
+    try {
+        this.appname = require(path.join(process.cwd(), 'bower.json')).name;
+    } catch (e) {
+        this.appname = path.basename(process.cwd());
+    }
 
-    this.classedName = this._.classify(this.name);
+    this.appname = this._.slugify(this._.humanize(this.appname));
+    this.scriptAppName = this._.camelize(this.appname);
+    this.name = this.name
+                    .replace(/^\//, '') //remove leading slashes
+                    .replace(/\/$/,''); //remove ending slashes
+
+    this.hierarchy = this.name.split('/');
+    this.slugifiedPath = this.hierarchy.map(function (folder) { //Generate a slugified name
+         return dasherize(folder);
+    });
+    this.slugifiedPath.pop(); //remove the last element in the array, namely the name
+
+    // invoking the yo generator with the argument 'header/loginButton' will result in the following naming patterns
+    this.name =last(this.hierarchy); // header/loginButton
+    this.cameledName = this._.camelize(this.name); // loginButton
+    this.dasherizedName = dasherize(this.name); // login-button
+    this.pluralizedName = inflection.pluralize(this.name);// loginButtons
+    this.classedName = this.cameledName.slice(0,1).toUpperCase() + this.cameledName.slice(1); // LoginButton
 
     if (typeof this.env.options.appPath === 'undefined') {
         try {
@@ -71,7 +69,6 @@ var Generator = module.exports = function Generator() {
 
     var sourceRoot = '/templates/javascript';
     this.scriptSuffix = '.js';
-
     this.sourceRoot(path.join(__dirname, sourceRoot));
 };
 

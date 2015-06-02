@@ -6,6 +6,7 @@ var path = require('path');
 var Generator = module.exports = function Generator() {
     ScriptBase.apply(this, arguments);
     this.hookFor('angular-cmelion:crud-mock');
+    this.typeSuffix = '.repo';
 };
 
 util.inherits(Generator, ScriptBase);
@@ -23,6 +24,6 @@ Generator.prototype.createRepositoryFiles = function createRepositoryFiles() {
         'spec/repository',
         'repositories/',
         '../unit/spec/repositories/',
-        this.dasherizedName + '-repository'
+        this.dasherizedName + this.typeSuffix
     );
 };

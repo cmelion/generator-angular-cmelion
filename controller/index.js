@@ -11,6 +11,8 @@ var Generator = module.exports = function Generator() {
   if (this.name && this.name.toLowerCase() !== 'ctrl' && this.name.substr(-4).toLowerCase() === 'ctrl') {
     this.name = this.name.slice(0, -4);
   }
+
+  this.typeSuffix = '.controller';
 };
 
 util.inherits(Generator, ScriptBase);
@@ -39,6 +41,6 @@ Generator.prototype.createControllerFiles = function createControllerFiles() {
         'spec/controller',
         ('../states/' + path + '/index'),
         ('../unit/spec/states/' + path + '/index'),
-        this.dasherizedName + '-controller'
+        this.dasherizedName + this.typeSuffix
     );
 };

@@ -1,7 +1,7 @@
 {
   "name": "generator-angular-cmelion",
-  "version": "0.1.19",
-  "author": "Charles Fulneckky",
+  "version": "0.1.21",
+  "author": "Charles Fulnecky",
   "description": "Custom yeoman generator for AngularJS",
   "keywords": [
     "yeoman-generator",
@@ -13,7 +13,6 @@
   ],
   "homepage": "https://github.com/cmelion/generator-angular-cmelion",
   "bugs": "https://github.com/cmelion/generator-angular-cmelion/issues",
-  "author": "Charles Fulnecky",
   "main": "src/index.js",
   "repository": {
     "type": "git",
